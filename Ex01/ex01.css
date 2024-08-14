@@ -28,6 +28,20 @@ body {
         margin-left: 16px;
         background-color: white;
     }
+
+    .submit_login {
+        width: 161.98px;
+        height: 46.99px;
+        border-radius: 10px;
+        margin-left: 120px;
+        margin-top: 10px;
+        background-color: black;
+        color: white;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
 }
 
 .login {
@@ -115,5 +129,5 @@ body {
     text-align: center;
     font-size: 14px;
     font-family: sans-serif;
-    margin-top: 20px;
+    margin-top: 30px;
 }
