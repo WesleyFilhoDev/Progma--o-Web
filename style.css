@@ -29,3 +29,10 @@ li {
     border-radius: 40px;
     background-color: rgb(43, 0, 255);
 }
+
+@media(max-width: 450px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+}
