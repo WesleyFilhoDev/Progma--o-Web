@@ -15,10 +15,12 @@ body {
         display: flex;
         justify-content: center;
         flex-direction: column;
+        margin-bottom: 500px;
     }
 
     img {
         width: 450px;
+    
     }
 
     .login {
@@ -27,20 +29,6 @@ body {
         border-radius: 50px;
         margin-left: 16px;
         background-color: white;
-    }
-
-    .submit_login {
-        width: 161.98px;
-        height: 46.99px;
-        border-radius: 10px;
-        margin-left: 120px;
-        margin-top: 10px;
-        background-color: black;
-        color: white;
-        border: none;
-        text-align: center;
-        cursor: pointer;
-        transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 }
 
