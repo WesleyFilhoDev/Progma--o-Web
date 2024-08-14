@@ -1,0 +1,31 @@
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+}
+
+em {
+    color: rgb(43, 0, 255);
+}
+
+img {
+    width: 300px;
+}
+
+li {
+    color: white;
+    padding-top: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+
+}
+
+.listas {
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+    background-color: rgb(43, 0, 255);
+}
