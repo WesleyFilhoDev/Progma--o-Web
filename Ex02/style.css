@@ -1,0 +1,11 @@
+.input_numero {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input_resultado {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
