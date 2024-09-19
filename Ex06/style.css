@@ -1,0 +1,48 @@
+.titulo {
+    text-align: center;
+    font: normal 20pt Arial;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+input {
+    width: 200px;
+    height: 20px;
+    background: black; 
+    border-radius: 5px;
+    color: white;
+} 
+
+button {
+    background: black;
+    color: white;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.resultado-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.resultado {
+    width: 60px;
+    height: 60px;
+    background: black;
+    border-radius: 10px;
+    font: normal 40pt Arial;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
