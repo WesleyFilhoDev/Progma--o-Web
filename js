@@ -1,0 +1,1 @@
+curl -X GET \-H "X-Parse-Application-Id: QvKxmsA6D1o2FFun85aSJ0zNzTeBC9AOwdGyBMrM" \-H "X-Parse-REST-API-Key: u2RzLKLG0CVKVcX1WbgKoy9KRCBuGbRqocDZgimj" \-G \--data-urlencode "where={ \"descricao\":\"A string\",\"concluida\":true }" \https://parseapi.back4app.com/classes/Tarefa
