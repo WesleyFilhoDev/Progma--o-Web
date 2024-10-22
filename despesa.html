@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD de Despesas</title>
+</head>
+<body>
+  <h1>Gerenciador de Despesas</h1>
+
+  <!-- Formulário para adicionar despesa -->
+  <input type="text" id="inputDescription" placeholder="Descrição">
+  <input type="number" id="inputValue" placeholder="Valor">
+  <button id="btnAdd">Adicionar Despesa</button>
+
+  <!-- Lista de despesas -->
+  <h2>Despesas</h2>
+  <ol id="olDespesas"></ol>
+
+  <!-- Somatório das despesas -->
+  <h3>Total de Despesas: R$ <span id="totalDespesas">0.00</span></h3>
+
+  <script>
+    // Seleção de elementos da página
+    const inputDescription = document.getElementById("inputDescription");
+    const inputValue = document.getElementById("inputValue");
+    const btnAdd = document.getElementById("btnAdd");
+    const olDespesas = document.getElementById("olDespesas");
+    const totalDespesas = document.getElementById("totalDespesas");
+
+    // Configuração do Back4App
+    const baseUrl = "https://parseapi.back4app.com/classes/Despesas";
+    const headers = {
+      "X-Parse-Application-Id": "FoiLtF16lh4W3jDFSrDEMTwGPRq0tn0zgWC7v65K",
+      "X-Parse-REST-API-Key": "ao0CJ2bPxFEkhUTIplqDB4OBBO4vb2AfpzLn7zm3",
+    };
+    const headersJson = { ...headers, "Content-Type": "application/json" };
+
+    // Função para listar as despesas
+    const getDespesas = async () => {
+      const response = await fetch(baseUrl, { method: "GET", headers });
+      const data = await response.json();
+      olDespesas.innerHTML = ""; // Limpa a lista antes de preencher
+      let total = 0;
+
+      data.results.forEach((despesa) => {
+        const li = document.createElement("li");
+        li.textContent = `${despesa.descricao}: R$${despesa.valor.toFixed(2)}`;
+        
+        // Input para atualizar valor
+        const inputNovoValor = document.createElement("input");
+        inputNovoValor.type = "number";
+        inputNovoValor.value = despesa.valor;
+        li.appendChild(inputNovoValor);
+
+        // Botão para atualizar despesa
+        const btnAtualizar = document.createElement("button");
+        btnAtualizar.textContent = "Atualizar";
+        btnAtualizar.onclick = () => atualizarDespesa(despesa.objectId, inputNovoValor.value);
+        li.appendChild(btnAtualizar);
+
+        // Botão para deletar despesa
+        const btnDeletar = document.createElement("button");
+        btnDeletar.textContent = "Remover";
+        btnDeletar.onclick = () => deletarDespesa(despesa.objectId);
+        li.appendChild(btnDeletar);
+
+        olDespesas.appendChild(li);
+        total += despesa.valor;
+      });
+
+      // Atualiza o total das despesas
+      totalDespesas.textContent = total.toFixed(2);
+    };
+
+    // Função para adicionar despesa
+    const adicionarDespesa = async () => {
+      const descricao = inputDescription.value;
+      const valor = parseFloat(inputValue.value);
+      if (!descricao || isNaN(valor)) {
+        alert("Preencha todos os campos corretamente!");
+        return;
+      }
+
+      const novaDespesa = { descricao, valor };
+      await fetch(baseUrl, {
+        method: "POST",
+        headers: headersJson,
+        body: JSON.stringify(novaDespesa),
+      });
+
+      inputDescription.value = "";
+      inputValue.value = "";
+      getDespesas(); // Recarrega a lista de despesas
+    };
+
+    // Função para deletar despesa
+    const deletarDespesa = async (id) => {
+      await fetch(`${baseUrl}/${id}`, { method: "DELETE", headers });
+      getDespesas(); // Recarrega a lista de despesas
+    };
+
+    // Função para atualizar o valor da despesa
+    const atualizarDespesa = async (id, novoValor) => {
+      if (isNaN(novoValor) || novoValor <= 0) {
+        alert("Insira um valor válido!");
+        return;
+      }
+
+      await fetch(`${baseUrl}/${id}`, {
+        method: "PUT",
+        headers: headersJson,
+        body: JSON.stringify({ valor: parseFloat(novoValor) }),
+      });
+      getDespesas(); // Recarrega a lista de despesas
+    };
+
+    // Carrega as despesas ao iniciar
+    window.onload = getDespesas;
+    btnAdd.onclick = adicionarDespesa;
+  </script>
+</body>
+</html>
