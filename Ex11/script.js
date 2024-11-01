@@ -41,4 +41,5 @@ function verificarTentativa() {
 
 };
 
+console.log(numeroSecreto)
 document.getElementById("btnGo").addEventListener("click", verificarTentativa);
