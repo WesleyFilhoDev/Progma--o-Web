@@ -4,6 +4,10 @@ function gravar() {
     let email = document.getElementById('email').value;
     let telefone = document.getElementById('telefone').value;
 
+    if (!telefone.startsWith("55")) {
+        telefone = "55" + telefone;
+    }
+
     localStorage.setItem('nome', nome);
     localStorage.setItem('endereco', endereco);
     localStorage.setItem('email', email);
