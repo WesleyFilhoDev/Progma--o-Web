@@ -46,5 +46,7 @@ button {
 
 #resultadoDiv {
     text-align: center;
-    
+    overflow-y: auto;
+    width: 25rem;
+    max-height: 20rem;
 }
