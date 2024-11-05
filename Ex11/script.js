@@ -30,7 +30,8 @@ function verificarTentativa() {
     }
 
     tentativas++;
-    resultadoDiv.innerHTML += `<p>Tentativa #${tentativas}: ${palpite} | Bulls: ${bulls}, Cows: ${cows}</p>`;
+    resultadoDiv.innerHTML = `<p>Tentativa #${tentativas}: ${palpite} | Bulls: ${bulls}, Cows: ${cows}</p>` + resultadoDiv.innerHTML;
+
 
     if (bulls === 4) {
         resultadoDiv.innerHTML += `<p>Parabéns! Você acertou o número ${numeroSecreto} em ${tentativas} tentativas!</p>`;
@@ -42,4 +43,4 @@ function verificarTentativa() {
 };
 
 console.log(numeroSecreto)
-document.getElementById("btnGo").addEventListener("click", verificarTentativa);
+document.getElementById("btnGo").addEventListener("click", verificarTentativa); 
