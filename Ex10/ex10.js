@@ -35,11 +35,13 @@ const getDespesas = async () => {
 
         const btnRefresh = document.createElement("button")
         btnRefresh.textContent = "Atualizar"
+        btnRefresh.style.backgroundColor = 'green'
         btnRefresh.onclick = () => refreshDespesa(despesa.objectId, inputNewValue.value);
         li.appendChild(btnRefresh);
 
         const btnDelete = document.createElement("button")
         btnDelete.textContent = "Deletar"
+        btnDelete.style.backgroundColor = 'red'
         btnDelete.onclick = () => deletedespesa(despesa.objectId);
         li.appendChild(btnDelete);
 
@@ -51,12 +53,14 @@ const getDespesas = async () => {
 };
 
 const addDespesa = async () => {
-    const descricao = inputDescription.value;
+    let descricao = inputDescription.value;
     const valor = parseFloat(inputValue.value);
     if (!descricao || isNaN(valor)) {
         alert("Preencha todos os campos corretamente!");
         return;
     }
+
+    descricao = descricao.toUpperCase();
 
     const newdespesa = {descricao, valor};
     await fetch(baseUrl, {
